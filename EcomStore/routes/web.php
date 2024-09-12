@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\HomeController;
 
+use App\Http\Controllers\AdminController;
+
 Route::get('/',[HomeController::class,'index']);
 
 
@@ -18,3 +20,20 @@ Route::middleware([
 });
 
 Route::get('redirect',[HomeController::class,'redirect']);
+
+Route::get('/view_category',[AdminController::class,'view_category']);
+
+Route::post('/add_category',[AdminController::class,'add_category']);
+
+Route::get('/delete_category/{id}',[AdminController::class,'delete_category']);
+
+
+Route::get('/view_products',[AdminController::class,'view_products']);
+
+Route::post('/add_products',[AdminController::class,'add_products']);
+
+Route::get('/show_products',[AdminController::class,'show_products']);
+
+Route::get('/delete_product/{id}',[AdminController::class,'delete_product']);
+
+Route::get('/edit_product/{id}',[AdminController::class,'edit_product']);
