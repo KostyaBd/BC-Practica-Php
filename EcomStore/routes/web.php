@@ -32,8 +32,10 @@ Route::get('/view_products',[AdminController::class,'view_products']);
 
 Route::post('/add_products',[AdminController::class,'add_products']);
 
-Route::get('/show_products',[AdminController::class,'show_products']);
+Route::get('/show_products', [AdminController::class, 'show_products'])->name('admin.show_products');
 
 Route::get('/delete_product/{id}',[AdminController::class,'delete_product']);
 
 Route::get('/edit_product/{id}',[AdminController::class,'edit_product']);
+
+Route::post('/edit_product_confirm/{id}',[AdminController::class,'edit_product_confirm']);
