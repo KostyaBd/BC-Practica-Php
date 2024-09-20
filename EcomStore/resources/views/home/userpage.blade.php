@@ -15,7 +15,7 @@
 
 @include('home.navbar')
 
-@include('home.body')
+@include('home.bodylayout')
 
 @include('home.script')
 

@@ -1,5 +1,5 @@
 
-<nav x-data="{ open: false }" class=" border-gray-100">
+<nav x-data="{ open: false }" class=" border-gray-100" style="height: 0">
 {{--    <nav x-data="{ open: false }" class="bg-white border-b border-gray-100">--}}
 
     <!-- Primary Navigation Menu -->
@@ -24,7 +24,7 @@
 {{--            </div>--}}
 
 {{--            <div class="hidden sm:flex sm:items-center sm:ms-6">--}}
-            <div class="hidden sm:flex sm:items-center">
+            <div class="hidden sm:flex ">
 
             <!-- Teams Dropdown -->
                 @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())

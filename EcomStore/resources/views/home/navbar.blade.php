@@ -1,9 +1,9 @@
-<nav class="fixed-top navbar bg-white">
+<nav class="fixed-top navbar navbar_size">
     <div class="container-fluid">
         <div class="row w-100 align-items-center d-flex justify-content-between">
             <div class="col-3">
                 <div class="header__logo">
-                    <a href="./index.html"><img src="home/img/logo.png" alt="Logo"></a>
+                    <a href="{{url('')}}"><img src="home/img/logo.png" alt="Logo"></a>
                 </div>
             </div>
             <div class="col-9">
@@ -13,6 +13,31 @@
                         <li class="nav-item"><a class="nav-link" href="./shop-grid.html">Shop</a></li>
                         <li class="nav-item"><a class="nav-link" href="./blog.html">Blog</a></li>
                         <li class="nav-item"><a class="nav-link" href="./contact.html">Contact</a></li>
+
+                        @if (Route::has('login'))
+
+                            @auth
+
+                            <x-app-layout>
+                            </x-app-layout>
+{{--            Logout button variant 1--}}
+{{--                                <li class="nav-item"><a class="btn btn-success" href="{{route('logout')}}">Login</a></li>--}}
+
+{{--            Logout button variant 2--}}
+{{--                                <form method="POST" action="{{ route('logout') }}" class="inline">--}}
+{{--                                    @csrf--}}
+{{--                                    <button type="submit" id="logincss" class="btn btn-success">--}}
+{{--                                        {{ __('Log Out') }}--}}
+{{--                                    </button>--}}
+{{--                                </form>--}}
+
+                            @else
+                        <li class="nav-item"><a class="btn btn-success" href="{{route('login')}}">Login</a></li>
+                        <li class="nav-item"><a class="btn btn-success" href="{{route('register')}}">Sign up</a></li>
+
+                            @endauth
+                            @endif
+
                     </ul>
                 </nav>
             </div>
