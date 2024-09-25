@@ -1,7 +1,9 @@
 <section class="featured spad">
     <div class="container">
-        <div id="products_container" class="row featured__filter products-container">
+        <div class="row featured__filter">
+
             @foreach($products as $product)
+
                 @if($product->quantity >= 1)
                     <div class="col-lg-3 col-md-4 col-sm-6 ">
                         <div class="featured__item clickable-div"
@@ -34,8 +36,13 @@
                     </div>
                 @endif
             @endforeach
-            {{-- Blade file for modal pop-up product description --}}
+
+            {{--Blade file for modal pop-up product description--}}
             @include('home.modal_details')
+
+
         </div>
+
     </div>
 </section>
+

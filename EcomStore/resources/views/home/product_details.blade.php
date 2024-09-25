@@ -21,7 +21,25 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-3">
-                @include('home.sidebar')
+                <div class="hero__categories sticky-div" style="padding: 0 !important;">
+                    <div class="hero__categories__all">
+                        <i class="fa fa-bars"></i>
+                        <span>All departments</span>
+                    </div>
+                    <ul>
+                        <li><a href="#">Fresh Meat</a></li>
+                        <li><a href="#">Vegetables</a></li>
+                        <li><a href="#">Fruit & Nut Gifts</a></li>
+                        <li><a href="#">Fresh Berries</a></li>
+                        <li><a href="#">Ocean Foods</a></li>
+                        <li><a href="#">Butter & Eggs</a></li>
+                        <li><a href="#">Fastfood</a></li>
+                        <li><a href="#">Fresh Onion</a></li>
+                        <li><a href="#">Papayaya & Crisps</a></li>
+                        <li><a href="#">Oatmeal</a></li>
+                        <li><a href="#">Fresh Bananas</a></li>
+                    </ul>
+                </div>
             </div>
 
             {{--            Right side from categories bar that will be moving--}}
@@ -77,10 +95,10 @@
 
                                             <div class="product__details__quantity" style="padding-bottom: 10px">
                                                 <div class="quantity">
-                                                    <input type="number" name="quantity" value="1" min="1"
-                                                           max="{{$product->quantity}}" onkeydown="return false;">
+                                                    <input type="number" name="quantity" value="1" min="1" max="{{$product->quantity}}" onkeydown="return false;">
                                                 </div>
                                             </div>
+
 
                                         @else
 
