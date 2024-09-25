@@ -19,7 +19,7 @@ Route::middleware([
     })->name('dashboard');
 });
 
-Route::get('redirect',[HomeController::class,'redirect']);
+Route::get('/redirect',[HomeController::class,'redirect']);
 
 Route::get('/view_category',[AdminController::class,'view_category']);
 
@@ -45,5 +45,14 @@ Route::get('/product_details/{id}',[HomeController::class,'product_details']);
 Route::post('/add_to_cart/{id}',[HomeController::class,'add_to_cart']);
 
 Route::get('/shopping_cart',[HomeController::class,'shopping_cart']);
+
+Route::get('/cash_payment',[HomeController::class,'cash_payment']);
+
+Route::get('/category/{category}', [HomeController::class, 'get_products_by_category'])->name('category.products');
+
+
+
+
+
 
 

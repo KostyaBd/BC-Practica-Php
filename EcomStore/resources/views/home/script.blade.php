@@ -19,6 +19,7 @@
 <script src="{{ asset('home/js/main.js') }}"></script>
 
 
+
 <script>
 
     // $(document).ready(function() {
@@ -82,6 +83,21 @@
 
         $('#addToCartForm').attr('action', '/add_to_cart/' + productId);
     });
+
+
+        document.addEventListener("DOMContentLoaded", function(event) {
+        var scrollpos = localStorage.getItem('scrollpos');
+        if (scrollpos) window.scrollTo(0, scrollpos);
+    });
+
+        window.onbeforeunload = function(e) {
+        localStorage.setItem('scrollpos', window.scrollY);
+    };
+
+
+
+
+
 
 
 </script>
