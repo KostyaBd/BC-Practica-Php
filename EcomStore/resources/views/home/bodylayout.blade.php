@@ -1,6 +1,6 @@
 
 {{--full screen picture with search bar in the middle--}}
-<div class="hero__item set-bg" data-setbg="home/img/grocery_bg.png">
+<div class="hero__item set-bg" data-setbg="{{ URL::to('/') }}/home/img/grocery_bg.png">
 
     <div class="search_container d-flex align-items-center justify-content-center">
         <div class="container-fluid">
@@ -22,11 +22,11 @@
     <div class="container-fluid">
         <div class="row">
             <div class="categories__slider owl-carousel">
-                <div class="categories__item set-bg" data-setbg="home/img/offer-5.webp"></div>
-                <div class="categories__item set-bg" data-setbg="home/img/offer-4.webp"></div>
-                <div class="categories__item set-bg" data-setbg="home/img/offer-3.webp"></div>
-                <div class="categories__item set-bg" data-setbg="home/img/offer-2.webp"></div>
-                <div class="categories__item set-bg" data-setbg="home/img/offer-1.webp"></div>
+                <div class="categories__item set-bg" data-setbg="{{ URL::to('/') }}/home/img/offer-5.webp"></div>
+                <div class="categories__item set-bg" data-setbg="{{ URL::to('/') }}/home/img/offer-4.webp"></div>
+                <div class="categories__item set-bg" data-setbg="{{ URL::to('/') }}/home/img/offer-3.webp"></div>
+                <div class="categories__item set-bg" data-setbg="{{ URL::to('/') }}/home/img/offer-2.webp"></div>
+                <div class="categories__item set-bg" data-setbg="{{ URL::to('/') }}/home/img/offer-1.webp"></div>
             </div>
         </div>
     </div>

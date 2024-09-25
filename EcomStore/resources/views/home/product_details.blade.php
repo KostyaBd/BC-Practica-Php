@@ -66,7 +66,7 @@
                                 <div class="product__details__pic">
                                     <div class="product__details__pic__item">
                                         <img class="product__details__pic__item--large"
-                                             src="/products/{{$product->image}}" alt="">
+                                             src="{{ URL::to('/') }}/products/{{$product->image}}" alt="">
                                     </div>
                                 </div>
                             </div>

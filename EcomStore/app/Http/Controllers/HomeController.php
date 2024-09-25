@@ -17,11 +17,18 @@ class HomeController extends Controller
 {
     public function index()
     {
+        $categories = Category::withCount('products')->get();
+        $totalProducts = Product::where('quantity', '>=', 1)->count();
+        $products = Product::where('quantity', '>=', 1)->get();
 
+<<<<<<< Updated upstream
         $products = Product::all();
 
         return view('home.userpage', compact('products'));
 
+=======
+        return view('home.userpage', compact('products', 'categories', 'totalProducts'));
+>>>>>>> Stashed changes
     }
 
     public function redirect()
@@ -33,9 +40,13 @@ class HomeController extends Controller
             return view('admin.home');
         } else {
 
+<<<<<<< Updated upstream
             $products = Product::all();
 
             return view('home.userpage', compact('products'));
+=======
+            return $this->index();
+>>>>>>> Stashed changes
         }
     }
 
@@ -103,4 +114,65 @@ class HomeController extends Controller
         }
     }
 
+<<<<<<< Updated upstream
+=======
+    public function cash_payment()
+    {
+        if (Auth::id()) {
+            $user_id = Auth::user()->id;
+
+            $data = Cart::where('user_id', '=', $user_id)->get();
+
+            if ($data->isEmpty()) {
+                return redirect()->back()->with('message', 'Cart is empty, please add product first');
+            }
+
+            foreach ($data as $data) {
+                $order = new Order;
+
+                $order->name = $data->name;
+                $order->email = $data->email;
+                $order->phone = $data->phone;
+                $order->address = $data->address;
+                $order->user_id = $data->user_id;
+                $order->product_title = $data->product_title;
+                $order->price = $data->price;
+                $order->quantity = $data->quantity;
+                $order->image = $data->image;
+                $order->product_id = $data->product_id;
+
+                $order->payment_status = 'cash on delivery';
+                $order->delivery_status = 'processing';
+
+                $order->save();
+
+                $cart_id = $data->id;
+                $cart = cart::find($cart_id);
+                $cart->delete();
+
+            }
+
+
+            return redirect()->back()->with('message', 'Order Completed Successfully, our administrator will contact you shortly');
+        } else {
+            return redirect('/login');
+        }
+
+    }
+
+    public function get_products_by_category($category_name)
+    {
+        $categories = Category::withCount('products')->get();
+        $totalProducts = Product::count();
+
+        if ($category_name === 'all') {
+            $products = Product::all();
+        } else {
+            $products = Product::where('category', $category_name)->get();
+        }
+
+        return view('home.userpage', compact('products', 'categories', 'totalProducts'));
+    }
+
+>>>>>>> Stashed changes
 }

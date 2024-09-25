@@ -9,5 +9,8 @@ class Category extends Model
 {
     use HasFactory;
 
-//    public mixed $category_name;
+    public function products()
+    {
+        return $this->hasMany(Product::class, 'category', 'category_name');
+    }
 }

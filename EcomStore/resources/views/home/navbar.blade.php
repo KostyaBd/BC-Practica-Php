@@ -3,7 +3,7 @@
         <div class="row w-100 align-items-center d-flex justify-content-between">
             <div class="col-3">
                 <div class="header__logo">
-                    <a href="{{url('/')}}"><img src="home/img/logo.png" alt="Logo"></a>
+                    <a href="{{url('/')}}"><img src="{{ URL::to('/') }}/home/img/logo.png" alt="Logo"></a>
                 </div>
             </div>
             <div class="col-9">

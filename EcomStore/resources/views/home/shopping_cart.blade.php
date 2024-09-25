@@ -38,7 +38,7 @@
                         @foreach($cart as $cart)
                             <tr>
                                 <td class="shoping__cart__item">
-                                    <img src="products/{{$cart->image}}" alt="" style="max-height: 100px">
+                                    <img src="{{ URL::to('/') }}/products/{{$cart->image}}" alt="" style="max-height: 100px">
                                     <h5>{{$cart->title}}</h5>
                                 </td>
                                 <td class="shoping__cart__price">
