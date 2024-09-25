@@ -17,7 +17,7 @@
                              data-id="{{$product->id}}"
                              data-quantityMax="{{$product->quantity}}">
 
-                            <div class="featured__item__pic set-bg" data-setbg="products/{{$product->image}}"></div>
+                            <div class="featured__item__pic set-bg" data-setbg="/products/{{$product->image}}"></div>
 
                             <div class="featured__item__text">
                                 <h6><a href="{{url('product_details', $product->id)}}">{{$product->title}}</a></h6>

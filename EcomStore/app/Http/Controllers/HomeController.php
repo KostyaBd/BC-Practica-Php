@@ -151,9 +151,9 @@ class HomeController extends Controller
 
     }
 
-    public function get_products_by_category($category)
+    public function get_products_by_category($category_name)
     {
-        $products = Product::where('category', $category)->get();
+        $products = Product::where('category', $category_name)->get();
         $categories = Category::all();
         return view('home.userpage', compact('products', 'categories'));
     }
