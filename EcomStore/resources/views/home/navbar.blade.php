@@ -3,16 +3,16 @@
         <div class="row w-100 align-items-center d-flex justify-content-between">
             <div class="col-3">
                 <div class="header__logo">
-                    <a href="{{url('')}}"><img src="home/img/logo.png" alt="Logo"></a>
+                    <a href="{{url('/')}}"><img src="home/img/logo.png" alt="Logo"></a>
                 </div>
             </div>
             <div class="col-9">
                 <nav class="header__menu">
                     <ul class="nav justify-content-end">
-                        <li class="nav-item active"><a class="nav-link" href="./index.html">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="./shop-grid.html">Shop</a></li>
-                        <li class="nav-item"><a class="nav-link" href="./blog.html">Blog</a></li>
-                        <li class="nav-item"><a class="nav-link" href="./contact.html">Contact</a></li>
+                        <li class="nav-item active"><a class="nav-link" href="/">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{url('shopping_cart')}}">Cart</a></li>
+                        <li class="nav-item"><a class="nav-link" href="">Blog</a></li>
+                        <li class="nav-item"><a class="nav-link" href="">Contact</a></li>
 
                         @if (Route::has('login'))
 

@@ -15,16 +15,16 @@
                 <section class="product-details spad">
                     <div class="container">
 
-                        {{--            notification in case category was added succesfully--}}
-                        @if(session()->has('message'))
-                            <div class="alert alert-success">
+{{--                        --}}{{--            notification in case category was added succesfully--}}
+{{--                        @if(session()->has('message'))--}}
+{{--                            <div class="alert alert-success">--}}
 
-                                {{--                    button to close notification--}}
-                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+{{--                                --}}{{--                    button to close notification--}}
+{{--                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>--}}
 
-                                {{session()->get('message')}}
-                            </div>
-                        @endif
+{{--                                {{session()->get('message')}}--}}
+{{--                            </div>--}}
+{{--                        @endif--}}
 
                         <div class="row">
                             <div class="col-lg-6 col-md-6">

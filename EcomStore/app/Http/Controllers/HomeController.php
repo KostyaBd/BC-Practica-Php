@@ -53,7 +53,6 @@ class HomeController extends Controller
         if (Auth::id()) {
             $user = Auth::user();
             $product = Product::find($id);
-            $products = Product::all();
 
             $cart = new Cart;
 
@@ -81,10 +80,27 @@ class HomeController extends Controller
             $cart->save();
             $product->save();
 
-            return view('home.userpage', compact('products'))->with('message','Product Added To Cart Successfully');
+            return redirect()->back()->with('message','Product Added To Cart Successfully');
 
         } else {
             return redirect('/login');
         }
     }
+
+    public function shopping_cart()
+    {
+        if(Auth::id()){
+            $id = Auth::user()->id;
+
+//            $cart = Cart::all();
+
+            $cart = Cart::where('user_id', '=', $id)->get();
+
+            return view('home.shopping_cart', compact('cart'));
+        }
+        else {
+            return redirect('/login');
+        }
+    }
+
 }
