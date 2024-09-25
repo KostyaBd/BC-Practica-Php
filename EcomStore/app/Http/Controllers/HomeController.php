@@ -11,23 +11,27 @@ use App\Models\User;
 
 use App\Models\Product;
 
+use App\Models\Cart;
+
 class HomeController extends Controller
 {
-    public function index(){
+    public function index()
+    {
 
-            $products = Product::all();
+        $products = Product::all();
 
-            return view('home.userpage', compact('products'));
+        return view('home.userpage', compact('products'));
 
     }
-    public function redirect(){
 
-        $usertype=Auth::user()->username;
+    public function redirect()
+    {
 
-        if($usertype=='1'){
+        $usertype = Auth::user()->username;
+
+        if ($usertype == '1') {
             return view('admin.home');
-        }
-        else{
+        } else {
 
             $products = Product::all();
 
@@ -40,7 +44,47 @@ class HomeController extends Controller
         $product = Product::find($id);
 
 
-        return view('home.product_details',compact('product'));
+        return view('home.product_details', compact('product'));
 
+    }
+
+    public function add_to_cart(Request $request, $id)
+    {
+        if (Auth::id()) {
+            $user = Auth::user();
+            $product = Product::find($id);
+            $products = Product::all();
+
+            $cart = new Cart;
+
+            $cart->name = $user->name;
+            $cart->email = $user->email;
+            $cart->phone = $user->phone;
+            $cart->address = $user->address;
+            $cart->user_id = $user->id;
+
+            $cart->product_title = $product->title;
+            if($product->discount_price) {
+                $cart->price = $product->discount_price * $request->quantity;
+            }
+            else {
+                $cart->price = $product->price * $request->quantity;
+            }
+
+            $cart->image = $product->image;
+            $cart->product_id = $product->id;
+
+            $cart->quantity = $request->quantity;
+
+            $product->quantity -= $cart->quantity;
+
+            $cart->save();
+            $product->save();
+
+            return view('home.userpage', compact('products'))->with('message','Product Added To Cart Successfully');
+
+        } else {
+            return redirect('/login');
+        }
     }
 }

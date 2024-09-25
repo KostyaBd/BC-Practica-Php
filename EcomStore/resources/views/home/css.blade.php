@@ -37,6 +37,10 @@
 
 <style>
 
+    .custom-modal{
+        max-width: 80%;
+    }
+
 
     .clickable_link {
         display: block;

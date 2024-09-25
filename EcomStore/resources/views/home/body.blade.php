@@ -2,69 +2,43 @@
     <div class="container">
         <div class="row featured__filter">
 
-            @foreach($products as $products)
+            @foreach($products as $product)
 
-                <div class="col-lg-3 col-md-4 col-sm-6 ">
-                    <div class="featured__item clickable-div">
-                        {{--                        <a href="{{url('product_details', $products->id)}}" class="clickable_link">--}}
-                        <a>
+                @if($product->quantity >= 1)
+                    <div class="col-lg-3 col-md-4 col-sm-6 ">
+                        <div class="featured__item clickable-div"
+                             data-toggle="modal"
+                             data-target="#descriptionModal"
+                             data-title="{{$product->title}}"
+                             data-description="{{$product->description}}"
+                             data-image="products/{{$product->image}}"
+                             data-category="{{$product->category}}"
+                             data-quantity="{{$product->quantity}}"
+                             data-price="{{$product->price}}"
+                             data-discount="{{$product->discount_price}}"
+                             data-id="{{$product->id}}"
+                             data-quantityMax="{{$product->quantity}}">
 
-
-                            <button type="button"
-                                    class="btn btn-primary"
-                                    data-toggle="modal"
-                                    data-target="#descriptionModal"
-                                    data-title="{{$products->title}}"
-                                    data-description="{{$products->description}}"
-                                    data-image="products/{{$products->image}}"
-                                    data-category="{{$products->category}}"
-                                    data-quantity="{{$products->quantity}}"
-                                    data-price="{{$products->price}}"
-                                    data-discount="{{$products->discount_price}}">
-
-                                Click for description
-                            </button>
-
-                            <div class="featured__item__pic set-bg" data-setbg="products/{{$products->image}}"></div>
+                            <div class="featured__item__pic set-bg" data-setbg="products/{{$product->image}}"></div>
 
                             <div class="featured__item__text">
-                                <h6><a href="{{url('product_details', $products->id)}}">{{$products->title}}</a></h6>
+                                <h6><a href="{{url('product_details', $product->id)}}">{{$product->title}}</a></h6>
 
-                                @if($products->discount_price == null)
-                                    <h5>${{$products->price}}</h5>
+                                @if($product->discount_price == null)
+                                    <h5>${{$product->price}}</h5>
                                 @else
-                                    <h5><s>{{$products->price}}</s> ${{$products->discount_price}}</h5>
-                            @endif
-                        </a>
+                                    <h5>
+                                        <s style="color: red; font-weight: normal;">{{$product->price}}</s><span> ${{$product->discount_price}}</span>
+                                    </h5>
+                                @endif
+                            </div>
+                        </div>
                     </div>
-                </div>
+                @endif
             @endforeach
 
-            {{--            Modal pop-up for product description--}}
-            <div class="modal fade" id="descriptionModal" tabindex="-1" role="dialog" aria-labelledby="descriptionLabel"
-                 aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-
-
-                        <div class="modal-header">
-
-                            <h5 class="modal-title" id="modalTitle">Product Title</h5>
-
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-
-                        </div>
-
-                        <div class="modal-body" id="modalDescription">
-                            Product description will go here.
-                        </div>
-
-
-                    </div>
-                </div>
-            </div>
+            {{--Blade file for modal pop-up product description--}}
+            @include('home.modal_details')
 
 
         </div>
