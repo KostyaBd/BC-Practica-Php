@@ -44,6 +44,14 @@ Route::get('/product_details/{id}',[HomeController::class,'product_details']);
 
 Route::post('/add_to_cart/{id}',[HomeController::class,'add_to_cart']);
 
+Route::get('/cash_payment',[HomeController::class,'cash_payment']);
+
 Route::get('/shopping_cart',[HomeController::class,'shopping_cart']);
+
+Route::get('/category/{category}', [HomeController::class, 'get_products_by_category'])->name('category.products');
+
+Route::get('/contact',[HomeController::class,'contact']);
+
+Route::get('/blog',[HomeController::class,'blog']);
 
 

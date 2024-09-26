@@ -6,7 +6,7 @@
 {{--    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">--}}
     <div class="max-w-7xl mx-auto ">
 
-    <div class="flex justify-between h-16">
+    <div class="flex justify-end h-16">
 {{--            <div class="flex">--}}
 {{--                <!-- Logo -->--}}
 {{--                <div class="shrink-0 flex items-center">--}}
@@ -28,7 +28,7 @@
 
             <!-- Teams Dropdown -->
                 @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())
-                    <div class="ms-3 relative">
+                    <div class="ms-3 relative" style="align-items: end">
                         <x-dropdown align="right" width="60">
                             <x-slot name="trigger">
                                 <span class="inline-flex rounded-md">
@@ -168,6 +168,7 @@
 
             <div class="mt-3 space-y-1">
                 <!-- Account Management -->
+
                 <x-responsive-nav-link href="{{ route('profile.show') }}" :active="request()->routeIs('profile.show')">
                     {{ __('Profile') }}
                 </x-responsive-nav-link>

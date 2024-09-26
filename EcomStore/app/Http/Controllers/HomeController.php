@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Auth;
@@ -13,6 +14,8 @@ use App\Models\Product;
 
 use App\Models\Cart;
 
+use App\Models\Order;
+
 class HomeController extends Controller
 {
     public function index()
@@ -21,14 +24,7 @@ class HomeController extends Controller
         $totalProducts = Product::where('quantity', '>=', 1)->count();
         $products = Product::where('quantity', '>=', 1)->get();
 
-<<<<<<< Updated upstream
-        $products = Product::all();
-
-        return view('home.userpage', compact('products'));
-
-=======
         return view('home.userpage', compact('products', 'categories', 'totalProducts'));
->>>>>>> Stashed changes
     }
 
     public function redirect()
@@ -40,13 +36,7 @@ class HomeController extends Controller
             return view('admin.home');
         } else {
 
-<<<<<<< Updated upstream
-            $products = Product::all();
-
-            return view('home.userpage', compact('products'));
-=======
             return $this->index();
->>>>>>> Stashed changes
         }
     }
 
@@ -74,10 +64,9 @@ class HomeController extends Controller
             $cart->user_id = $user->id;
 
             $cart->product_title = $product->title;
-            if($product->discount_price) {
+            if ($product->discount_price) {
                 $cart->price = $product->discount_price * $request->quantity;
-            }
-            else {
+            } else {
                 $cart->price = $product->price * $request->quantity;
             }
 
@@ -91,7 +80,7 @@ class HomeController extends Controller
             $cart->save();
             $product->save();
 
-            return redirect()->back()->with('message','Product Added To Cart Successfully');
+            return redirect()->back()->with('message', 'Product Added To Cart Successfully');
 
         } else {
             return redirect('/login');
@@ -100,7 +89,7 @@ class HomeController extends Controller
 
     public function shopping_cart()
     {
-        if(Auth::id()){
+        if (Auth::id()) {
             $id = Auth::user()->id;
 
 //            $cart = Cart::all();
@@ -108,14 +97,11 @@ class HomeController extends Controller
             $cart = Cart::where('user_id', '=', $id)->get();
 
             return view('home.shopping_cart', compact('cart'));
-        }
-        else {
+        } else {
             return redirect('/login');
         }
     }
 
-<<<<<<< Updated upstream
-=======
     public function cash_payment()
     {
         if (Auth::id()) {
@@ -174,5 +160,14 @@ class HomeController extends Controller
         return view('home.userpage', compact('products', 'categories', 'totalProducts'));
     }
 
->>>>>>> Stashed changes
+    public function contact()
+    {
+        return view('home.contact');
+    }
+
+    public function blog()
+    {
+        return view('home.blog');
+    }
+
 }
