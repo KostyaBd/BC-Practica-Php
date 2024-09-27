@@ -42,3 +42,18 @@
 
 <!-- Custom js for this page -->
 <script src="{{ asset('admin/assets/js/dashboard.js') }}"></script>
+
+<script>
+
+    document.querySelector('.file-upload-browse').addEventListener('click', function() {
+        // Trigger the hidden file input when the Upload button is clicked
+        document.querySelector('.file-upload-default').click();
+    });
+
+    // Show the selected file name in the disabled text input
+    document.querySelector('.file-upload-default').addEventListener('change', function() {
+        var fileName = this.files[0].name;
+        document.querySelector('.file-upload-info').value = fileName;
+    });
+
+</script>

@@ -53,46 +53,50 @@
                 </div>
             @endif
 
-            <div class="div_center">
-                <h2 class="h2_font">All Products</h2>
+
+            <div class="col-lg-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">All Products</h4>
+                        <p class="card-description">Edit and delete products</p>
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th> Title </th>
+                                    <th> Description </th>
+                                    <th> Quantity </th>
+                                    <th> Price </th>
+                                    <th> Discount Price </th>
+                                    <th></th>
+                                    <th> Image </th>
+                                    <th> Delete </th>
+                                    <th> Edit </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($products as $products)
+
+                                    <tr>
+                                        <td>{{$products->title}}</td>
+                                        <td>{{ Str::limit($products->description, 20) }}</td>
+                                        <td>{{$products->quantity}}</td>
+                                        <td>{{$products->category}}</td>
+                                        <td>{{$products->price}}</td>
+                                        <td>{{$products->discount}}</td>
+                                        <td><img src="/products/{{$products->image}}"></td>
+                                        <td><a onclick="return confirm('Are you sure you want to delete this?')" class="btn btn-danger" href="{{url('delete_product', $products->id)}}">Delete</a> </td>
+                                        <td><a class="btn btn-success" href="{{url('edit_product', $products->id)}}">Edit</a> </td>
+
+                                    </tr>
+
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-            <table class="center">
-
-                <tr>
-                    <td>Title</td>
-                    <td>Description</td>
-                    <td>Quantity</td>
-                    <td>Category</td>
-                    <td>Price</td>
-                    <td>Discount Price</td>
-                    <td>Image</td>
-
-                    <td>Delete</td>
-                    <td>Edit</td>
-
-                </tr>
-
-                @foreach($products as $products)
-
-                    <tr>
-                        <td>{{$products->title}}</td>
-                        <td>{{$products->description}}</td>
-                        <td>{{$products->quantity}}</td>
-                        <td>{{$products->category}}</td>
-                        <td>{{$products->price}}</td>
-                        <td>{{$products->discount}}</td>
-                        <td><img src="/products/{{$products->image}}"></td>
-
-                        <td><a onclick="return confirm('Are you sure you want to delete this?')" class="btn btn-danger" href="{{url('delete_product', $products->id)}}">Delete</a> </td>
-                        <td><a class="btn btn-success" href="{{url('edit_product', $products->id)}}">Edit</a> </td>
-
-                    </tr>
-
-                @endforeach
-
-            </table>
-
         </div>
     </div>
 

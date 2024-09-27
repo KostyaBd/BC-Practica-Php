@@ -29,15 +29,28 @@ class HomeController extends Controller
 
     public function redirect()
     {
+        if(Auth::id()){
 
-        $usertype = Auth::user()->username;
+            $usertype = Auth::user()->username;
 
-        if ($usertype == '1') {
-            return view('admin.home');
-        } else {
+            if ($usertype == '1') {
 
-            return $this->index();
+                $total_products = Product::all()->count();
+                $total_products_active = Product::where('quantity', '>=', 1)->count();
+                $active_orders = Order::all()->count();
+                $total_users = User::where('username', '0',0)->count();
+
+
+                return view('admin.home', compact('total_products', 'total_products_active', 'active_orders', 'total_users'));
+            } else {
+
+                return $this->index();
+            }
+        }else{
+            return redirect('/login');
         }
+
+
     }
 
     public function product_details($id)

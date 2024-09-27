@@ -19,7 +19,7 @@ Route::middleware([
     })->name('dashboard');
 });
 
-Route::get('redirect',[HomeController::class,'redirect']);
+Route::get('/redirect',[HomeController::class,'redirect']);
 
 Route::get('/view_category',[AdminController::class,'view_category']);
 
@@ -37,6 +37,9 @@ Route::get('/show_products', [AdminController::class, 'show_products'])->name('a
 Route::get('/delete_product/{id}',[AdminController::class,'delete_product']);
 
 Route::get('/edit_product/{id}',[AdminController::class,'edit_product']);
+
+
+
 
 Route::post('/edit_product_confirm/{id}',[AdminController::class,'edit_product_confirm']);
 

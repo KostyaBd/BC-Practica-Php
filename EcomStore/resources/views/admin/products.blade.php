@@ -6,29 +6,29 @@
 
     <style type="text/css">
 
-        .div_center{
-            text-align: center;
-            padding-top: 40px;
-        }
+        /*.div_center{*/
+        /*    text-align: center;*/
+        /*    padding-top: 40px;*/
+        /*}*/
 
-        .font_size{
-            font-size: 40px;
-            padding-bottom: 40px;
-        }
+        /*.font_size{*/
+        /*    font-size: 40px;*/
+        /*    padding-bottom: 40px;*/
+        /*}*/
 
-        .text_color{
-            color: black;
-            padding-bottom: 20px;
-        }
+        /*.text_color form-control{*/
+        /*    color: black;*/
+        /*    padding-bottom: 20px;*/
+        /*}*/
 
-        label{
-            display: inline-block;
-            width: 200px;
-        }
+        /*label{*/
+        /*    display: inline-block;*/
+        /*    width: 200px;*/
+        /*}*/
 
-        .div_design{
-            padding-bottom: 15px;
-        }
+        /*.div_design{*/
+        /*    padding-bottom: 15px;*/
+        /*}*/
 
 
     </style>
@@ -37,80 +37,95 @@
 <body>
 <div class="container-scroller">
 
-@include('admin.sidebar')
+    @include('admin.sidebar')
 
-@include('admin.navbar')
+    @include('admin.navbar')
 
     <div class="main-panel">
+
+        {{--            notification in case category was added succesfully--}}
+        @if(session()->has('message'))
+            <div class="alert alert-success">
+
+                {{--                    button to close notification--}}
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+
+                {{session()->get('message')}}
+            </div>
+        @endif
+
         <div class="content-wrapper">
-            <div class="div_center">
+            <div class="page-header">
 
-                {{--            notification in case category was added succesfully--}}
-                @if(session()->has('message'))
-                    <div class="alert alert-success">
+                <div class="container-fluid page-body-wrapper">
+                    <div class="col-12 grid-margin stretch-card">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Add a new product</h4>
 
-                        {{--                    button to close notification--}}
-                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+                                <form class="forms-sample" action="{{url('/add_products')}}" method="POST" enctype="multipart/form-data">
 
-                        {{session()->get('message')}}
+                                    @csrf
+
+                                    <div class="form-group">
+                                        <label>Product Title</label>
+                                        <input class="form-control" type="text" name="title"  placeholder="Write a Title" required="" style="color: black;">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Product Description</label>
+                                        <input class="text_color form-control" type="text" name="description" placeholder="Write a Description"
+                                               required="" style="color: black;">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Product Price</label>
+                                        <input class="text_color form-control" type="number" min="0" name="price" placeholder="Write a Price"
+                                               required="" style="color: black;">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Discount Price</label>
+                                        <input class="text_color form-control" type="number" min="0" name="discount"
+                                               placeholder="Write a Discount Price" style="color: black;">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Product Quantity</label>
+                                        <input class="text_color form-control" type="number" min="0" name="quantity" placeholder="Write a Quantity"
+                                               required="" style="color: black;">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Product Category</label>
+                                        <select class="text_color form-control" name="category" required="" style="color: white;">
+                                            <option selected="">Add a Category here</option>
+
+                                            @foreach($category as $category)
+                                                <option value="{{$category->category_name}}" style="color: white;">{{$category->category_name}}</option>
+                                            @endforeach
+
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Product Image</label>
+                                        <input type="file" name="image" required="" class="file-upload-default">
+                                        <div class="input-group col-xs-12">
+                                            <input type="text" class="form-control file-upload-info" disabled
+                                                   placeholder="Upload Image">
+                                            <span class="input-group-append"><button class="file-upload-browse btn btn-primary" type="button">Upload</button></span>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
+
+                                    <button class="btn btn-dark">Cancel</button>
+                                </form>
+                            </div>
+                        </div>
                     </div>
-                @endif
+                </div>
 
-                <h1 class="font_size">Add Product</h1>
-
-                <form action="{{url('/add_products')}}" method="POST" enctype="multipart/form-data">
-
-                     @csrf
-
-                    <div class="div_design">
-                    <label>Product Title</label>
-                    <input class="text_color" type="text" name="title" placeholder="Write a Title" required="">
-                    </div>
-
-                    <div class="div_design">
-                        <label>Product Description</label>
-                        <input class="text_color" type="text" name="description" placeholder="Write a Description" required="">
-                    </div>
-
-                    <div class="div_design">
-                        <label>Product Price</label>
-                        <input class="text_color" type="number" min="0" name="price" placeholder="Write a Price" required="">
-                    </div>
-
-                    <div class="div_design">
-                        <label>Discount Price</label>
-                        <input class="text_color" type="number" min="0" name="discount" placeholder="Write a Discount Price">
-                    </div>
-
-                    <div class="div_design">
-                        <label>Product Quantity</label>
-                        <input class="text_color" type="number" min="0" name="quantity" placeholder="Write a Quantity" required="">
-                    </div>
-
-                    <div class="div_design">
-                        <label>Product Category</label>
-                        <select class="text_color" name="category" required="">
-                            <option selected="">Add a Category here</option>
-
-                            @foreach($category as $category)
-                                <option value="{{$category->category_name}}">{{$category->category_name}}</option>
-                            @endforeach
-
-                        </select>
-                    </div>
-
-                    <div class="div_design">
-                        <label>Product Image</label>
-                        <input type="file" name="image" required="">
-
-                    </div>
-
-                    <div class="div_design">
-                        <input type="submit" value="Add Product" class="btn btn-primary">
-
-                    </div>
-
-                </form>
 
             </div>
         </div>
