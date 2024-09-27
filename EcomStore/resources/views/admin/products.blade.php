@@ -4,35 +4,6 @@
 
     @include('admin.css')
 
-    <style type="text/css">
-
-        /*.div_center{*/
-        /*    text-align: center;*/
-        /*    padding-top: 40px;*/
-        /*}*/
-
-        /*.font_size{*/
-        /*    font-size: 40px;*/
-        /*    padding-bottom: 40px;*/
-        /*}*/
-
-        /*.text_color form-control{*/
-        /*    color: black;*/
-        /*    padding-bottom: 20px;*/
-        /*}*/
-
-        /*label{*/
-        /*    display: inline-block;*/
-        /*    width: 200px;*/
-        /*}*/
-
-        /*.div_design{*/
-        /*    padding-bottom: 15px;*/
-        /*}*/
-
-
-    </style>
-
 </head>
 <body>
 <div class="container-scroller">
@@ -41,46 +12,49 @@
 
     @include('admin.navbar')
 
+
     <div class="main-panel">
-
-        {{--            notification in case category was added succesfully--}}
-        @if(session()->has('message'))
-            <div class="alert alert-success">
-
-                {{--                    button to close notification--}}
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
-
-                {{session()->get('message')}}
-            </div>
-        @endif
-
         <div class="content-wrapper">
-            <div class="page-header">
 
-                <div class="container-fluid page-body-wrapper">
-                    <div class="col-12 grid-margin stretch-card">
+            {{--            notification in case category was added succesfully--}}
+            @if(session()->has('message'))
+                <div class="alert alert-success">
+
+                    {{--                    button to close notification--}}
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+
+                    {{session()->get('message')}}
+                </div>
+            @endif
+
+
+            <div class="col-12 grid-margin stretch-card">
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title">Add a new product</h4>
 
-                                <form class="forms-sample" action="{{url('/add_products')}}" method="POST" enctype="multipart/form-data">
+                                <form class="forms-sample" action="{{url('/add_products')}}" method="POST"
+                                      enctype="multipart/form-data">
 
                                     @csrf
 
                                     <div class="form-group">
                                         <label>Product Title</label>
-                                        <input class="form-control" type="text" name="title"  placeholder="Write a Title" required="" style="color: black;">
+                                        <input class="form-control" type="text" name="title" placeholder="Write a Title"
+                                               required="" style="color: black;">
                                     </div>
 
                                     <div class="form-group">
                                         <label>Product Description</label>
-                                        <input class="text_color form-control" type="text" name="description" placeholder="Write a Description"
+                                        <input class="text_color form-control" type="text" name="description"
+                                               placeholder="Write a Description"
                                                required="" style="color: black;">
                                     </div>
 
                                     <div class="form-group">
                                         <label>Product Price</label>
-                                        <input class="text_color form-control" type="number" min="0" name="price" placeholder="Write a Price"
+                                        <input class="text_color form-control" type="number" min="0" name="price"
+                                               placeholder="Write a Price"
                                                required="" style="color: black;">
                                     </div>
 
@@ -92,17 +66,20 @@
 
                                     <div class="form-group">
                                         <label>Product Quantity</label>
-                                        <input class="text_color form-control" type="number" min="0" name="quantity" placeholder="Write a Quantity"
+                                        <input class="text_color form-control" type="number" min="0" name="quantity"
+                                               placeholder="Write a Quantity"
                                                required="" style="color: black;">
                                     </div>
 
                                     <div class="form-group">
                                         <label>Product Category</label>
-                                        <select class="text_color form-control" name="category" required="" style="color: white;">
+                                        <select class="text_color form-control" name="category" required=""
+                                                style="color: white;">
                                             <option selected="">Add a Category here</option>
 
                                             @foreach($category as $category)
-                                                <option value="{{$category->category_name}}" style="color: white;">{{$category->category_name}}</option>
+                                                <option value="{{$category->category_name}}"
+                                                        style="color: white;">{{$category->category_name}}</option>
                                             @endforeach
 
                                         </select>
@@ -114,12 +91,12 @@
                                         <div class="input-group col-xs-12">
                                             <input type="text" class="form-control file-upload-info" disabled
                                                    placeholder="Upload Image">
-                                            <span class="input-group-append"><button class="file-upload-browse btn btn-primary" type="button">Upload</button></span>
+                                            <span class="input-group-append"><button
+                                                    class="file-upload-browse btn btn-primary"
+                                                    type="button">Upload</button></span>
                                         </div>
                                     </div>
                                     <button type="submit" class="btn btn-primary mr-2">Submit</button>
-
-                                    <button class="btn btn-dark">Cancel</button>
                                 </form>
                             </div>
                         </div>

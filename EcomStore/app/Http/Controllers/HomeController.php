@@ -39,9 +39,9 @@ class HomeController extends Controller
                 $total_products_active = Product::where('quantity', '>=', 1)->count();
                 $active_orders = Order::all()->count();
                 $total_users = User::where('username', '0',0)->count();
+                $orders = Order::where('delivery_status', "processing")->limit(10)->get();
 
-
-                return view('admin.home', compact('total_products', 'total_products_active', 'active_orders', 'total_users'));
+                return view('admin.home', compact('orders', 'total_products', 'total_products_active', 'active_orders', 'total_users'));
             } else {
 
                 return $this->index();
@@ -135,8 +135,15 @@ class HomeController extends Controller
                 $order->address = $data->address;
                 $order->user_id = $data->user_id;
                 $order->product_title = $data->product_title;
-                $order->price = $data->price;
                 $order->quantity = $data->quantity;
+
+                if ($data->discount_price) {
+                    $order->price = $data->discount_price * $data->quantity;
+                } else {
+                    $order->price = $data->price * $data->quantity;
+                }
+
+                $order->price = $data->price;
                 $order->image = $data->image;
                 $order->product_id = $data->product_id;
 
@@ -182,5 +189,6 @@ class HomeController extends Controller
     {
         return view('home.blog');
     }
+
 
 }

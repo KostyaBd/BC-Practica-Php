@@ -21,6 +21,19 @@
 
 <section class="shoping-cart spad">
     <div class="container" style="padding-top: 20px">
+
+        {{--            notification in case category was added succesfully--}}
+        @if(session()->has('message'))
+            <div class="alert alert-success">
+
+                {{--                    button to close notification--}}
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+
+                {{session()->get('message')}}
+            </div>
+        @endif
+
+
         <div class="row">
             <div class="col-lg-12">
                 <div class="shoping__cart__table">
@@ -72,7 +85,7 @@
                         <li>Subtotal <span>$ {{$grand_total}}</span></li>
                         <li>Total <span>$ {{$grand_total}}</span></li>
                     </ul>
-                    <a href="#" class="primary-btn">PROCEED TO CHECKOUT</a>
+                    <a href="{{url('/cash_payment')}}" class="primary-btn">CASH PAYMENT</a>
                 </div>
             </div>
         </div>

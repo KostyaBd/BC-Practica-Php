@@ -39,21 +39,21 @@
             </a>
             <div class="collapse" id="ui-basic">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="{{url('/view_products')}}">Active Orders</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="{{url('/show_products')}}">Orders History</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{url('/orders_active')}}">Active Orders</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{url('/orders_history')}}">Orders History</a></li>
                 </ul>
             </div>
         </li>
         <li class="nav-item menu-items">
-            <a class="nav-link" href="{{url('view_category')}}">
+            <a class="nav-link" href="{{url('/view_category')}}">
               <span class="menu-icon">
                 <i class="mdi mdi-playlist-play"></i>
               </span>
-                <span class="menu-title">Categories</span>
+                <span class="menu-title">Manage Categories</span>
             </a>
         </li>
         <li class="nav-item menu-items">
-            <a class="nav-link" href="{{url('view_category')}}">
+            <a class="nav-link" href="{{url('/view_users')}}">
               <span class="menu-icon">
                 <i class="mdi mdi-security"></i>
               </span>

@@ -57,37 +57,35 @@
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">All Products</h4>
-                        <p class="card-description">Edit and delete products</p>
+                        <h4 class="card-title">All Users</h4>
+                        <p class="card-description">Edit and delete users</p>
                         <div class="table-responsive">
                             <table class="table table-striped">
                                 <thead>
                                 <tr>
                                     <th> Title </th>
-                                    <th> Description </th>
-                                    <th> Quantity </th>
-                                    <th> Category </th>
-                                    <th> Price </th>
-                                    <th> Discount Price </th>
-                                    <th> Image </th>
+                                    <th> Email </th>
+                                    <th> Role </th>
+                                    <th> Phone </th>
+                                    <th> Address </th>
+                                    <th> Password </th>
                                     <th> Delete </th>
                                     <th> Edit </th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($products as $products)
+                                @foreach($users as $user)
 
                                     <tr>
-                                        <td>{{$products->title}}</td>
-                                        <td>{{ Str::limit($products->description, 20) }}</td>
-                                        <td>{{$products->quantity}}</td>
-                                        <td>{{$products->category}}</td>
-                                        <td>{{$products->price}}</td>
-                                        <td>{{$products->discount_price}}</td>
-                                        <td><img src="/products/{{$products->image}}"></td>
-                                        <td><a onclick="return confirm('Are you sure you want to delete this?')" class="btn btn-danger" href="{{url('delete_product', $products->id)}}">Delete</a> </td>
-                                        <td><a class="btn btn-success" href="{{url('edit_product', $products->id)}}">Edit</a> </td>
+                                        <td>{{$user->name}}</td>
+                                        <td>{{$user->email}}</td>
+                                        <td>{{$user->username}}</td>
+                                        <td>{{$user->phone}}</td>
+                                        <td>{{$user->address}}</td>
+                                        <td>{{ Str::limit($user->password, 20) }}</td>
 
+                                        <td><a onclick="return confirm('Are you sure you want to delete this?')" class="btn btn-danger" href="{{url('delete_user', $user->id)}}">Delete</a> </td>
+                                        <td><a class="btn btn-success" href="{{url('edit_user', $user->id)}}">Edit</a> </td>
                                     </tr>
 
                                 @endforeach
